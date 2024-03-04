@@ -1,19 +1,18 @@
-import React, { useState } from "react";
 import dayjs from "dayjs";
 
 import {
-  ResponsiveContainer,
+  CartesianGrid,
+  Legend,
+  Line,
   LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid,
-  Line,
 } from "recharts";
+import { IChartDatum, ILineData } from "../../interfaces";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
-import { IChartDatum, ILineData } from "../../interfaces";
 
 interface Props {
   memoizedRevenueData: any;
@@ -25,7 +24,6 @@ const ResponsiveLineChart = ({
   memoizedRevenueDataOld,
 }: Props) => {
   // hooks
-  const [isChecked, setIsChecked] = useState(false);
 
   // helpers
 
@@ -56,14 +54,7 @@ const ResponsiveLineChart = ({
   return (
     <>
       <div className="collapse collapse-arrow bg-base-100">
-        <input
-          type="checkbox"
-          onChange={() => {
-            setIsChecked(!isChecked);
-          }}
-          name="my-accordion-1"
-          checked={isChecked}
-        />
+        <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           Click to open this one and close others
         </div>
