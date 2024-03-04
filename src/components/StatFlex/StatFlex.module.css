@@ -1,0 +1,13 @@
+.StatFlex {
+  border-radius: 0;
+}
+
+.dashedHorizontalLine {
+  border: 0;
+  border-top: 1px dashed gray;
+}
+
+.selectedStatFlex {
+  border: 0;
+  border-bottom: 1px solid black;
+}

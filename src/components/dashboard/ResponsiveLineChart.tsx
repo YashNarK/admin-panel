@@ -13,6 +13,9 @@ import {
 import { IChartDatum, ILineData } from "../../interfaces";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
+import StatFlex from "../StatFlex/StatFlex";
+import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
+import { useState } from "react";
 
 interface Props {
   memoizedRevenueData: any;
@@ -24,7 +27,7 @@ const ResponsiveLineChart = ({
   memoizedRevenueDataOld,
 }: Props) => {
   // hooks
-
+  const [isChecked, setIsChecked] = useState(false);
   // helpers
 
   function extractDateWithoutYear(dateString: string) {
@@ -53,11 +56,32 @@ const ResponsiveLineChart = ({
   //   components
   return (
     <>
-      <div className="collapse collapse-arrow bg-base-100">
-        <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium">
-          Click to open this one and close others
+      <div className="flex justify-between w-full bg-base-100">
+        <div className="flex-grow">
+          <StatFlex />
+        </div>{" "}
+        <div className="flex-none my-auto mx-2 ">
+          <button
+            className="btn btn-ghost"
+            onClick={() => {
+              setIsChecked(!isChecked);
+            }}
+          >
+            {!isChecked ? <FaAngleDoubleDown /> : <FaAngleDoubleUp />}
+          </button>
         </div>
+      </div>
+      <div className="collapse bg-base-100 p-0 m-0">
+        <input
+          className="h-0 p-0 m-0"
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {
+            setIsChecked(!isChecked);
+          }}
+        />
+        <div className="collapse-title h-0 p-0 m-0" />
+
         <div className="collapse-content">
           <ResponsiveContainer
             width={"100%"}
