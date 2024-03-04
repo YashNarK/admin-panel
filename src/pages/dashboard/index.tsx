@@ -122,12 +122,6 @@ export const Dashboard: React.FC = () => {
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip
-              // separator="    "
-              // formatter={(value, name, props) => {
-              //   return [value, props.payload.date + " " + name];
-              // }}
-              // labelStyle={{ display: "none" }}
-              // itemStyle={{ color: "black" }}
               content={<CustomTooltip />}
             />
             <Legend />
