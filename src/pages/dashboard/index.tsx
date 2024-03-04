@@ -22,6 +22,7 @@ import {
 import { revenueDataset_250223_030323 } from "../../data/data";
 import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../../components/CustomizedLegend/CustomizedLegend";
+import ResponsiveLineChart from "../../components/dashboard/ResponsiveLineChart";
 
 const filters: CrudFilter[] = [
   {
@@ -80,24 +81,8 @@ export const Dashboard: React.FC = () => {
   const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
 
   // helper functions
-  function extractDateWithoutYear(dateString: string) {
-    return dayjs(dateString).format("DD, MMM");
-  }
 
-  function prepareLineData() {
-    let i = 0;
 
-    return memoizedRevenueData?.map((revenueData: IChartDatum) => {
-      let newData = {
-        ...revenueData,
-        oldValue: memoizedRevenueDataOld[i].value,
-        date: extractDateWithoutYear(revenueData.date),
-      };
-      i += 1;
-      return newData;
-    });
-  }
-  const lineData: ILineData[] = prepareLineData();
 
   // debugs
   // console.log("new", dailyRevenue);
@@ -107,58 +92,12 @@ export const Dashboard: React.FC = () => {
   // console.log(lineData);
 
   // components
-
   const tabs: TTab[] = [
     {
       id: 1,
       label: "Daily Revenue",
       content: (
-        <ResponsiveContainer
-          width={"100%"}
-          height={400}
-          id="chart-line"
-          className="rounded-md mx-auto"
-        >
-          <LineChart data={lineData}>
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip content={<CustomTooltip />} />
-            {memoizedRevenueData && memoizedRevenueDataOld && (
-              <Legend
-                content={
-                  <CustomizedLegend
-                    newStartDate={memoizedRevenueData[0].date}
-                    newEndDate={
-                      memoizedRevenueData[memoizedRevenueData.length - 1].date
-                    }
-                    oldStartDate={memoizedRevenueDataOld[0].date}
-                    oldEndDate={
-                      memoizedRevenueDataOld[memoizedRevenueDataOld.length - 1]
-                        .date
-                    }
-                  />
-                }
-              />
-            )}
-            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke="#8884d8"
-              strokeWidth={3}
-              name="2024"
-            />
-
-            <Line
-              type="monotone"
-              dataKey="oldValue"
-              stroke="#ddedf8"
-              strokeWidth={3}
-              strokeDasharray={"9 3"}
-              name="2023"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <ResponsiveLineChart memoizedRevenueData={memoizedRevenueData} memoizedRevenueDataOld={memoizedRevenueDataOld} />
       ),
     },
 
