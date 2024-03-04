@@ -10,7 +10,6 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
   label,
 }) => {
   if (active && payload && payload.length) {
-    console.log(payload);
     let newVal = payload[0].payload.value;
     let oldVal = payload[1].payload.oldValue;
     let diff =
