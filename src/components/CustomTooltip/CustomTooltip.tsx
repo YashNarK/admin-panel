@@ -37,7 +37,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
             </div>
             <div className="new-value flex">
               <div className="badge my-auto mr-2">
-                <div className={["h-1 w-4", styles.bg8884d8].join(" ")}></div>
+                <div className={["h-1 w-6", styles.bg8884d8].join(" ")}></div>
               </div>
               <div className="my-auto">
                 <span>{`${label} ${payload[0].name} `}</span>
@@ -48,7 +48,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
             </div>
             <div className="old-value flex">
               <div className="badge my-auto mr-2">
-                <div className={["h-1 w-4", styles.bgddedf8].join(" ")}></div>
+                <div className={["h-1 w-6", styles.bgddedf8].join(" ")}></div>
               </div>
               <div className="my-auto">
                 <span>{`${label} ${payload[1].name} `}</span>
