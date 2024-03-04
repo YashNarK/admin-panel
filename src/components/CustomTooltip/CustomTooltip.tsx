@@ -40,7 +40,10 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
                 <div className={["h-1 w-4", styles.bg8884d8].join(" ")}></div>
               </div>
               <div className="my-auto">
-                <p>{`${label} ${payload[0].name} ${newVal}`}</p>
+                <span>{`${label} ${payload[0].name} `}</span>
+                <span className="ml-4 font-bold">
+                  {newVal.toLocaleString("en-IN")}
+                </span>
               </div>
             </div>
             <div className="old-value flex">
@@ -48,7 +51,10 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
                 <div className={["h-1 w-4", styles.bgddedf8].join(" ")}></div>
               </div>
               <div className="my-auto">
-                <p>{`${label} ${payload[1].name} ${oldVal}`}</p>
+                <span>{`${label} ${payload[1].name} `}</span>
+                <span className="ml-4 font-bold">
+                  {oldVal.toLocaleString("en-IN")}
+                </span>
               </div>
             </div>
           </div>
