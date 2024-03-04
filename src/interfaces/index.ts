@@ -59,3 +59,5 @@ export type TTab = {
   label: string;
   content: JSX.Element;
 };
+
+export type ILineData = { date: string; value: number; oldValue: number };
