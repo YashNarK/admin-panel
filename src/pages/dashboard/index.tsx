@@ -1,12 +1,13 @@
-import React, { useMemo } from "react";
 import { CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
-import Stats from "../../components/dashboard/Stats";
+import React, { useMemo } from "react";
+import { RecentSales } from "../../components/dashboard/RecentSales";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
+import Stats from "../../components/dashboard/Stats";
 import { TabView } from "../../components/dashboard/TabView";
-import { RecentSales } from "../../components/dashboard/RecentSales";
 import { IChartDatum, ILineData, TTab } from "../../interfaces";
+
 import {
   CartesianGrid,
   Legend,
@@ -15,9 +16,10 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from "recharts";
 import { revenueDataset_250223_030323 } from "../../data/data";
+import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
 
 const filters: CrudFilter[] = [
   {
@@ -97,11 +99,14 @@ export const Dashboard: React.FC = () => {
   // debugs
   // console.log("new", dailyRevenue);
   // console.log("old", revenueDataset_250223_030323);
-  console.log("new", memoizedRevenueData);
-  console.log("old", memoizedRevenueDataOld);
-  console.log(lineData);
+  // console.log("new", memoizedRevenueData);
+  // console.log("old", memoizedRevenueDataOld);
+  // console.log(lineData);
 
   // components
+
+  // custom tooltip component
+
   const tabs: TTab[] = [
     {
       id: 1,
@@ -116,7 +121,15 @@ export const Dashboard: React.FC = () => {
           <LineChart data={lineData}>
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip />
+            <Tooltip
+              // separator="    "
+              // formatter={(value, name, props) => {
+              //   return [value, props.payload.date + " " + name];
+              // }}
+              // labelStyle={{ display: "none" }}
+              // itemStyle={{ color: "black" }}
+              content={<CustomTooltip />}
+            />
             <Legend />
             <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
             <Line
