@@ -58,7 +58,7 @@ const ResponsiveLineChart = ({
       <div className="collapse collapse-arrow bg-base-100">
         <input
           type="checkbox"
-          onClick={() => {
+          onChange={() => {
             setIsChecked(!isChecked);
           }}
           name="my-accordion-1"
