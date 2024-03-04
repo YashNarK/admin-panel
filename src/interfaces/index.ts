@@ -61,3 +61,4 @@ export type TTab = {
 };
 
 export type ILineData = { date: string; value: number; oldValue: number };
+

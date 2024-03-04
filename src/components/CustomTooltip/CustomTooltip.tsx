@@ -1,7 +1,7 @@
 import React from "react";
 import { HiArrowTrendingDown, HiArrowTrendingUp } from "react-icons/hi2";
 import { TooltipProps } from "recharts";
-import styles from "./dashboard.module.css";
+import styles from "./CustomTooltip.module.css";
 type CustomTooltipProps = TooltipProps<number, string>;
 
 const CustomTooltip: React.FC<CustomTooltipProps> = ({
@@ -24,7 +24,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
             <div
               className={[
                 "stat-figure",
-                `text-${newVal > oldVal ? "success" : "error"}`,
+                `${newVal > oldVal ? "text-success" : "text-error"}`,
               ].join(" ")}
             >
               {newVal > oldVal ? (

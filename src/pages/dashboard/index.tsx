@@ -1,6 +1,6 @@
 import { CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { RecentSales } from "../../components/dashboard/RecentSales";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
@@ -11,15 +11,17 @@ import { IChartDatum, ILineData, TTab } from "../../interfaces";
 import {
   CartesianGrid,
   Legend,
+  LegendProps,
   Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis
+  YAxis,
 } from "recharts";
 import { revenueDataset_250223_030323 } from "../../data/data";
 import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
+import CustomizedLegend from "../../components/CustomizedLegend/CustomizedLegend";
 
 const filters: CrudFilter[] = [
   {
@@ -81,6 +83,7 @@ export const Dashboard: React.FC = () => {
   function extractDateWithoutYear(dateString: string) {
     return dayjs(dateString).format("DD, MMM");
   }
+
   function prepareLineData() {
     let i = 0;
 
@@ -105,8 +108,6 @@ export const Dashboard: React.FC = () => {
 
   // components
 
-  // custom tooltip component
-
   const tabs: TTab[] = [
     {
       id: 1,
@@ -121,10 +122,24 @@ export const Dashboard: React.FC = () => {
           <LineChart data={lineData}>
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip
-              content={<CustomTooltip />}
-            />
-            <Legend />
+            <Tooltip content={<CustomTooltip />} />
+            {memoizedRevenueData && memoizedRevenueDataOld && (
+              <Legend
+                content={
+                  <CustomizedLegend
+                    newStartDate={memoizedRevenueData[0].date}
+                    newEndDate={
+                      memoizedRevenueData[memoizedRevenueData.length - 1].date
+                    }
+                    oldStartDate={memoizedRevenueDataOld[0].date}
+                    oldEndDate={
+                      memoizedRevenueDataOld[memoizedRevenueDataOld.length - 1]
+                        .date
+                    }
+                  />
+                }
+              />
+            )}
             <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
             <Line
               type="monotone"
