@@ -17,15 +17,18 @@ import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
 import StatFlex from "../StatFlex/StatFlex";
 import formatDate from "../../helpers/utility";
+import Skeleton from "../Skeleton/Skeleton";
 
 interface Props {
   memoizedRevenueData: any;
   memoizedRevenueDataOld: any;
+  isLoading: boolean;
 }
 
 const ResponsiveLineChart = ({
   memoizedRevenueData,
   memoizedRevenueDataOld,
+  isLoading,
 }: Props) => {
   // hooks
   const [isChecked, setIsChecked] = useState(false);
@@ -46,98 +49,104 @@ const ResponsiveLineChart = ({
   }
 
   //   consts and variables
-  const lineData: ILineData[] = prepareLineData();
+  const lineData: ILineData[] = !isLoading && prepareLineData();
 
   //   debugs
+  // console.log(memoizedRevenueData);
+  // console.log(memoizedRevenueDataOld);
 
   //   components
-  
-  return (
-    <div
-      className={["static lg:relative ", !isChecked && "mb-20 pb-20"].join(" ")}
-    >
-      <div className="flex justify-between w-full bg-base-100 static lg:absolute z-[100]">
-        <div className="flex-grow px-4">
-          <StatFlex />
-        </div>{" "}
-        <div className="flex-none my-auto mx-2 ">
-          <button
-            className="btn btn-ghost"
-            onClick={() => {
+  if (!isLoading)
+    return (
+      <div
+        className={["static lg:relative ", !isChecked && "mb-20 pb-20"].join(
+          " "
+        )}
+      >
+        <div className="flex justify-between w-full bg-base-100 static lg:absolute z-[100]">
+          <div className="flex-grow px-4">
+            <StatFlex />
+          </div>{" "}
+          <div className="flex-none my-auto mx-2 ">
+            <button
+              className="btn btn-ghost"
+              onClick={() => {
+                setIsChecked(!isChecked);
+              }}
+            >
+              {!isChecked ? <FaAngleDown /> : <FaAngleUp />}
+            </button>
+          </div>
+        </div>
+        <div className="collapse bg-base-100 z-[99]">
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => {
               setIsChecked(!isChecked);
             }}
-          >
-            {!isChecked ? <FaAngleDown /> : <FaAngleUp />}
-          </button>
-        </div>
-      </div>
-      <div className="collapse bg-base-100 z-[99]">
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={() => {
-            setIsChecked(!isChecked);
-          }}
-        />
-        <div className="collapse-title" />
+          />
+          <div className="collapse-title" />
 
-        <div className="collapse-content">
-          <ResponsiveContainer
-            width={"100%"}
-            height={400}
-            id="chart-line"
-            className="rounded-md mx-auto mt-20"
-          >
-            <LineChart data={lineData}>
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip content={<CustomTooltip />} />
-              {memoizedRevenueData && memoizedRevenueDataOld && (
-                <Legend
-                  content={
-                    <CustomizedLegend
-                      newStartDate={memoizedRevenueData[0].date}
-                      newEndDate={
-                        memoizedRevenueData[memoizedRevenueData.length - 1].date
-                      }
-                      oldStartDate={formatDate({
-                        inputDate: memoizedRevenueDataOld[0].date,
-                        format: "MMM DD, YYYY",
-                      })}
-                      oldEndDate={formatDate({
-                        inputDate:
-                          memoizedRevenueDataOld[
-                            memoizedRevenueDataOld.length - 1
-                          ].date,
-                        format: "MMM DD, YYYY",
-                      })}
-                    />
-                  }
+          <div className="collapse-content">
+            <ResponsiveContainer
+              width={"100%"}
+              height={400}
+              id="chart-line"
+              className="rounded-md mx-auto mt-20"
+            >
+              <LineChart data={lineData}>
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip content={<CustomTooltip />} />
+                {memoizedRevenueData && memoizedRevenueDataOld && (
+                  <Legend
+                    content={
+                      <CustomizedLegend
+                        newStartDate={memoizedRevenueData[0].date}
+                        newEndDate={
+                          memoizedRevenueData[memoizedRevenueData.length - 1]
+                            .date
+                        }
+                        oldStartDate={formatDate({
+                          inputDate: memoizedRevenueDataOld[0].date,
+                          format: "MMM DD, YYYY",
+                        })}
+                        oldEndDate={formatDate({
+                          inputDate:
+                            memoizedRevenueDataOld[
+                              memoizedRevenueDataOld.length - 1
+                            ].date,
+                          format: "MMM DD, YYYY",
+                        })}
+                      />
+                    }
+                  />
+                )}
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#8884d8"
+                  strokeWidth={3}
+                  name="2024"
                 />
-              )}
-              <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#8884d8"
-                strokeWidth={3}
-                name="2024"
-              />
 
-              <Line
-                type="monotone"
-                dataKey="oldValue"
-                stroke="#ddedf8"
-                strokeWidth={3}
-                strokeDasharray={"9 3"}
-                name="2023"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+                <Line
+                  type="monotone"
+                  dataKey="oldValue"
+                  stroke="#ddedf8"
+                  strokeWidth={3}
+                  strokeDasharray={"9 3"}
+                  name="2023"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  return <Skeleton />;
 };
 
 export default ResponsiveLineChart;

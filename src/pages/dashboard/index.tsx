@@ -28,7 +28,7 @@ const filters: CrudFilter[] = [
 
 const oldFilters: { value: any }[] = [
   { value: dayjs().subtract(1, "year").subtract(8, "days") },
-  { value: dayjs().subtract(1, "year").subtract(1,"days") },
+  { value: dayjs().subtract(1, "year").subtract(1, "days") },
 ];
 
 export const Dashboard: React.FC = () => {
@@ -92,9 +92,9 @@ export const Dashboard: React.FC = () => {
   // console.log(
   //   formatDate({ inputDate: filters[1].value.$d, format: "YYYY-MM-DD" })
   // );
-  console.log("new", memoizedRevenueData);
+  // console.log("new", memoizedRevenueData);
 
-  console.log("old", oldRevenueData);
+  // console.log("old", oldRevenueData);
 
   // console.log(oldFilters[0].value.$d);
   // console.log(oldFilters[1].value.$d);
@@ -110,6 +110,7 @@ export const Dashboard: React.FC = () => {
         <ResponsiveLineChart
           memoizedRevenueData={memoizedRevenueData}
           memoizedRevenueDataOld={oldRevenueData}
+          isLoading={isLoading}
         />
       ),
     },
@@ -151,7 +152,7 @@ export const Dashboard: React.FC = () => {
         dailyOrders={dailyOrders}
         newCustomers={newCustomers}
       />
-      {!isLoading && <TabView tabs={tabs} />}
+      <TabView tabs={tabs} />
       <RecentSales />
     </>
   );
