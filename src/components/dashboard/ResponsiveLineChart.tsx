@@ -16,6 +16,7 @@ import { IChartDatum, ILineData } from "../../interfaces";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
 import StatFlex from "../StatFlex/StatFlex";
+import formatDate from "../../helpers/utility";
 
 interface Props {
   memoizedRevenueData: any;
@@ -30,10 +31,6 @@ const ResponsiveLineChart = ({
   const [isChecked, setIsChecked] = useState(false);
   // helpers
 
-  function extractDateWithoutYear(dateString: string) {
-    return dayjs(dateString).format("DD, MMM");
-  }
-
   function prepareLineData() {
     let i = 0;
 
@@ -41,7 +38,7 @@ const ResponsiveLineChart = ({
       let newData = {
         ...revenueData,
         oldValue: memoizedRevenueDataOld[i].value,
-        date: extractDateWithoutYear(revenueData.date),
+        date: formatDate({ inputDate: revenueData.date, format: "DD, MMM" }),
       };
       i += 1;
       return newData;
@@ -54,6 +51,7 @@ const ResponsiveLineChart = ({
   //   debugs
 
   //   components
+  
   return (
     <div
       className={["static lg:relative ", !isChecked && "mb-20 pb-20"].join(" ")}
@@ -102,12 +100,17 @@ const ResponsiveLineChart = ({
                       newEndDate={
                         memoizedRevenueData[memoizedRevenueData.length - 1].date
                       }
-                      oldStartDate={memoizedRevenueDataOld[0].date}
-                      oldEndDate={
-                        memoizedRevenueDataOld[
-                          memoizedRevenueDataOld.length - 1
-                        ].date
-                      }
+                      oldStartDate={formatDate({
+                        inputDate: memoizedRevenueDataOld[0].date,
+                        format: "MMM DD, YYYY",
+                      })}
+                      oldEndDate={formatDate({
+                        inputDate:
+                          memoizedRevenueDataOld[
+                            memoizedRevenueDataOld.length - 1
+                          ].date,
+                        format: "MMM DD, YYYY",
+                      })}
                     />
                   }
                 />

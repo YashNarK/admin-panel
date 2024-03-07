@@ -1,28 +1,17 @@
 import { CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { RecentSales } from "../../components/dashboard/RecentSales";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
 import Stats from "../../components/dashboard/Stats";
 import { TabView } from "../../components/dashboard/TabView";
-import { IChartDatum, ILineData, TTab } from "../../interfaces";
+import { IChartDatum, TTab } from "../../interfaces";
 
-import {
-  CartesianGrid,
-  Legend,
-  LegendProps,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import { revenueDataset_250223_030323 } from "../../data/data";
-import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
-import CustomizedLegend from "../../components/CustomizedLegend/CustomizedLegend";
 import ResponsiveLineChart from "../../components/dashboard/ResponsiveLineChart";
+import { revenueDataset_250223_030323 } from "../../data/data";
+import useOldRevenueData from "../../hooks/useOldRevenueData";
+import formatDate from "../../helpers/utility";
 
 const filters: CrudFilter[] = [
   {
@@ -37,13 +26,27 @@ const filters: CrudFilter[] = [
   },
 ];
 
-const pickDateRange = () => {
-  let value1 = dayjs()?.subtract(7, "days")?.startOf("day");
-  let value2 = dayjs().startOf("day");
-};
+const oldFilters: { value: any }[] = [
+  { value: dayjs().subtract(1, "year").subtract(8, "days") },
+  { value: dayjs().subtract(1, "year").subtract(1,"days") },
+];
 
 export const Dashboard: React.FC = () => {
   // hooks
+
+  const { oldRevenueData, isLoading } = useOldRevenueData({
+    params: {
+      date_gte: formatDate({
+        inputDate: oldFilters[0].value.$d,
+        format: "YYYY-MM-DD",
+      }),
+      date_lte: formatDate({
+        inputDate: oldFilters[1].value.$d,
+        format: "YYYY-MM-DD",
+      }),
+    },
+  });
+
   const { data: dailyRevenue } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
@@ -73,23 +76,30 @@ export const Dashboard: React.FC = () => {
   };
 
   const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
-  const memoizedRevenueDataOld = useMemoizedChartData(
-    revenueDataset_250223_030323
-  );
 
   const memoizedOrdersData = useMemoizedChartData(dailyOrders);
   const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
 
   // helper functions
 
-
-
   // debugs
   // console.log("new", dailyRevenue);
   // console.log("old", revenueDataset_250223_030323);
-  // console.log("new", memoizedRevenueData);
-  // console.log("old", memoizedRevenueDataOld);
   // console.log(lineData);
+  // console.log(
+  //   formatDate({ inputDate: filters[0].value.$d, format: "YYYY-MM-DD" })
+  // );
+  // console.log(
+  //   formatDate({ inputDate: filters[1].value.$d, format: "YYYY-MM-DD" })
+  // );
+  console.log("new", memoizedRevenueData);
+
+  console.log("old", oldRevenueData);
+
+  // console.log(oldFilters[0].value.$d);
+  // console.log(oldFilters[1].value.$d);
+  // console.log(filters[0].value.$d);
+  // console.log(filters[1].value.$d);
 
   // components
   const tabs: TTab[] = [
@@ -97,7 +107,10 @@ export const Dashboard: React.FC = () => {
       id: 1,
       label: "Daily Revenue",
       content: (
-        <ResponsiveLineChart memoizedRevenueData={memoizedRevenueData} memoizedRevenueDataOld={memoizedRevenueDataOld} />
+        <ResponsiveLineChart
+          memoizedRevenueData={memoizedRevenueData}
+          memoizedRevenueDataOld={oldRevenueData}
+        />
       ),
     },
 
@@ -138,7 +151,7 @@ export const Dashboard: React.FC = () => {
         dailyOrders={dailyOrders}
         newCustomers={newCustomers}
       />
-      <TabView tabs={tabs} />
+      {!isLoading && <TabView tabs={tabs} />}
       <RecentSales />
     </>
   );
