@@ -15,6 +15,7 @@ const StatFlex = () => {
           isSelected={item.isSelected}
           value={item.value}
           percentageDifference={item.percentageDifference}
+          description={item.description}
         />
       ))}
     </div>
