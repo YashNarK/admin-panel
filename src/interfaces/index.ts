@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IOrder {
   id: number;
   user: IUser;
@@ -62,3 +64,11 @@ export type TTab = {
 
 export type ILineData = { date: string; value: number; oldValue: number };
 
+export interface IStatItem {
+  title: string;
+  value: string;
+  icon: ReactNode;
+  percentageDifference: string;
+  isIncreased: boolean;
+  isSelected: boolean;
+}
