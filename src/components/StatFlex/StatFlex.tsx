@@ -1,17 +1,20 @@
+import DropdownButton from "../DropdownButton/DropdownButton";
 import styles from "./StatFlex.module.css";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 const StatFlex = () => {
   return (
-    <div className={["flex flex-row flex-wrap  ", styles.StatFlex].join(" ")}>
+    <div
+      className={["flex flex-row flex-wrap  mb-5", styles.StatFlex].join(" ")}
+    >
       <div
         className={[
-          " lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-2 mt-5",
+          " lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-1 mt-5 pl-5",
           styles.selectedStatFlex,
           "bg-neutral-content",
         ].join(" ")}
       >
         <div className="stat-title text-neutral text-md lg:text-lg font-bold">
-          Online store sessions
+          Online store sessions <DropdownButton />
         </div>
         <div className={[styles.dashedHorizontalLine, "w-3/4"].join(" ")} />
         <div>
@@ -22,9 +25,9 @@ const StatFlex = () => {
         </div>
       </div>
 
-      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-2 mt-5">
+      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-1 mt-5 pl-5">
         <div className="stat-title text-neutral text-md lg:text-lg font-bold">
-          Net return value
+          Net return value <DropdownButton />
         </div>
         <div className={[styles.dashedHorizontalLine, "w-3/4"].join(" ")} />
 
@@ -36,9 +39,9 @@ const StatFlex = () => {
         </div>
       </div>
 
-      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-2 mt-5">
+      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-1 mt-5 pl-5">
         <div className="stat-title text-neutral text-md lg:text-lg font-bold">
-          Total orders
+          Total orders <DropdownButton />
         </div>
         <div className={[styles.dashedHorizontalLine, "w-3/4"].join(" ")} />
 
@@ -50,9 +53,9 @@ const StatFlex = () => {
         </div>
       </div>
 
-      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-2 mt-5">
+      <div className=" lg:w-1/4 md:w-1/3 w-1/1 rounded hover:bg-base-200 hover:cursor-pointer p-1 mt-5 pl-5">
         <div className="stat-title text-neutral text-md lg:text-lg font-bold">
-          Conversion rate
+          Conversion rate <DropdownButton />
         </div>
         <div className={[styles.dashedHorizontalLine, "w-3/4"].join(" ")} />
 

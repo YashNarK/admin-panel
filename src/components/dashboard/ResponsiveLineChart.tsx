@@ -1,5 +1,7 @@
 import dayjs from "dayjs";
 
+import { useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import {
   CartesianGrid,
   Legend,
@@ -14,8 +16,6 @@ import { IChartDatum, ILineData } from "../../interfaces";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
 import StatFlex from "../StatFlex/StatFlex";
-import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
-import { useState } from "react";
 
 interface Props {
   memoizedRevenueData: any;
@@ -55,7 +55,9 @@ const ResponsiveLineChart = ({
 
   //   components
   return (
-    <div className="static lg:relative">
+    <div
+      className={["static lg:relative ", !isChecked && "mb-20 pb-20"].join(" ")}
+    >
       <div className="flex justify-between w-full bg-base-100 static lg:absolute z-[100]">
         <div className="flex-grow px-4">
           <StatFlex />
@@ -67,27 +69,26 @@ const ResponsiveLineChart = ({
               setIsChecked(!isChecked);
             }}
           >
-            {!isChecked ? <FaAngleDoubleDown /> : <FaAngleDoubleUp />}
+            {!isChecked ? <FaAngleDown /> : <FaAngleUp />}
           </button>
         </div>
       </div>
-      <div className="collapse bg-base-100 m-0 z-[99]">
+      <div className="collapse bg-base-100 z-[99]">
         <input
-          className="h-0 p-0 m-0"
           type="checkbox"
           checked={isChecked}
           onChange={() => {
             setIsChecked(!isChecked);
           }}
         />
-        <div className="collapse-title h-0 p-0 m-0" />
+        <div className="collapse-title" />
 
         <div className="collapse-content">
           <ResponsiveContainer
             width={"100%"}
             height={400}
             id="chart-line"
-            className="rounded-md mx-auto my-10"
+            className="rounded-md mx-auto mt-20"
           >
             <LineChart data={lineData}>
               <XAxis dataKey="date" />
