@@ -76,5 +76,7 @@ export interface IStatItem {
 
 export interface IOldData {
   date: string;
-  value:string;
+  value: string;
 }
+
+export type TResponseData<T> = T[];
