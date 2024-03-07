@@ -1,4 +1,7 @@
 import { MdModeEdit } from "react-icons/md";
+import { FaRegQuestionCircle } from "react-icons/fa";
+import { FaChartLine } from "react-icons/fa6";
+
 import styles from "./DropdownButton.module.css";
 const DropdownButton = () => {
   return (
@@ -13,22 +16,70 @@ const DropdownButton = () => {
         ].join(" ")}
       >
         <li>
-          <a>Average Order Value</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Average Order Value</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
         <li>
-          <a>Conversion rate</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Conversion rate</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
         <li>
-          <a>Gross Sales</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Gross sales</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
         <li>
-          <a>Net return value</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Net return value</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
         <li>
-          <a>Store search conversion</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Store search conversion</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
         <li>
-          <a>Return rate</a>
+          <div className="flex text-xs w-full  p-0 py-2 group">
+            <div className="flex-grow pl-1">
+              <FaChartLine className="inline  mr-2" />
+              <a className=" ">Return rate</a>
+            </div>
+            <div className="flex-shrink text-xs pr-1 opacity-0 group-hover:opacity-100">
+              <FaRegQuestionCircle />
+            </div>
+          </div>
         </li>
       </ul>
     </details>
