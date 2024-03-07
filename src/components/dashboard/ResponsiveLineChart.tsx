@@ -55,9 +55,9 @@ const ResponsiveLineChart = ({
 
   //   components
   return (
-    <>
-      <div className="flex justify-between w-full bg-base-100">
-        <div className="flex-grow">
+    <div className="static lg:relative">
+      <div className="flex justify-between w-full bg-base-100 static lg:absolute z-[100]">
+        <div className="flex-grow px-4">
           <StatFlex />
         </div>{" "}
         <div className="flex-none my-auto mx-2 ">
@@ -71,7 +71,7 @@ const ResponsiveLineChart = ({
           </button>
         </div>
       </div>
-      <div className="collapse bg-base-100 p-0 m-0">
+      <div className="collapse bg-base-100 m-0 z-[99]">
         <input
           className="h-0 p-0 m-0"
           type="checkbox"
@@ -87,7 +87,7 @@ const ResponsiveLineChart = ({
             width={"100%"}
             height={400}
             id="chart-line"
-            className="rounded-md mx-auto"
+            className="rounded-md mx-auto my-10"
           >
             <LineChart data={lineData}>
               <XAxis dataKey="date" />
@@ -132,7 +132,7 @@ const ResponsiveLineChart = ({
           </ResponsiveContainer>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
