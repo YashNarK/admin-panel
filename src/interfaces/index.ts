@@ -71,4 +71,5 @@ export interface IStatItem {
   percentageDifference: string;
   isIncreased: boolean;
   isSelected: boolean;
+  description: string;
 }
