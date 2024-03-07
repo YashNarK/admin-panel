@@ -8,7 +8,7 @@ const StatFlex = () => {
       className={["flex flex-row flex-wrap  mb-5", styles.StatFlex].join(" ")}
     >
       {statItemList.map((item, index) => (
-        <StatItem
+        <StatItem key={index}
           title={item.title}
           icon={item.icon}
           isIncreased={item.isIncreased}
