@@ -73,3 +73,8 @@ export interface IStatItem {
   isSelected: boolean;
   description: string;
 }
+
+export interface IOldData {
+  date: string;
+  value:string;
+}
