@@ -9,9 +9,8 @@ import { TabView } from "../../components/dashboard/TabView";
 import { IChartDatum, TTab } from "../../interfaces";
 
 import ResponsiveLineChart from "../../components/dashboard/ResponsiveLineChart";
-import { revenueDataset_250223_030323 } from "../../data/data";
-import useOldRevenueData from "../../hooks/useOldRevenueData";
 import formatDate from "../../helpers/utility";
+import useOldRevenueData from "../../hooks/useOldRevenueData";
 
 const filters: CrudFilter[] = [
   {
@@ -84,7 +83,6 @@ export const Dashboard: React.FC = () => {
 
   // debugs
   // console.log("new", dailyRevenue);
-  // console.log("old", revenueDataset_250223_030323);
   // console.log(lineData);
   // console.log(
   //   formatDate({ inputDate: filters[0].value.$d, format: "YYYY-MM-DD" })
