@@ -62,7 +62,7 @@ export type TTab = {
   content: JSX.Element;
 };
 
-export type ILineData = { date: string; value: number; oldValue: number };
+export type TLineData = { date: string; value: number; oldValue: number };
 
 export interface IStatItem {
   title: string;

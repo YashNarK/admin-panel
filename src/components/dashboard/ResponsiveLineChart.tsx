@@ -12,7 +12,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { IChartDatum, ILineData } from "../../interfaces";
+import { IChartDatum, TLineData } from "../../interfaces";
 import CustomTooltip from "../CustomTooltip/CustomTooltip";
 import CustomizedLegend from "../CustomizedLegend/CustomizedLegend";
 import StatFlex from "../StatFlex/StatFlex";
@@ -49,7 +49,7 @@ const ResponsiveLineChart = ({
   }
 
   //   consts and variables
-  const lineData: ILineData[] = !isLoading && prepareLineData();
+  const lineData: TLineData[] = !isLoading && prepareLineData();
 
   //   debugs
   // console.log(memoizedRevenueData);
