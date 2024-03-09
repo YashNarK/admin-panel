@@ -17,6 +17,16 @@ npm run dev
 
 ![working-video](media/working_video.gif)
 
+- Initially, while loading we get a skeleton in the place of Stat cards and line charts.
+- Once data is loaded, the expandable Stat Flex appears with which we can interact.
+- By hovering over the Stat Cards, one can see them getting highlighted.
+- By hovering over the Stat Title/Heading one can get an info card about the stat.
+- By clicking the edit/pencil icon, one can get the dropdown listed. Hovering over the drop down content, one gets a following circle-queestion-mark icon and highlights.
+- By clicking the down arrow at the end of the Stat Flex, one can expand the hidden chart.
+- The chart contains line plot of revenue data from years 2023 and 2024. Usually, both will only display data from same date ranges. (Except for Febuary 29 which only happens in leap year)
+- By hovering over the line chart, one can get the custom tooltip which provides info on line values and difference between them.
+- The custom legend is also visible below the line chart.
+
 ### Loading Screen
 
 ![loading_screen](./media/loading_screen.png)
@@ -134,3 +144,15 @@ curl "https://my-json-server.typicode.com/YashNarK/demo-admin-db/data?date_gte=2
 ## Charts Library used
 
 1. [Recharts](https://recharts.org/)
+
+## Implementation Choices
+
+- Used `css module` based styling over `css in JS` in the components as it adheres with the concept of (sufficient) cohesion and also separation of concerns in programming principles.
+- Used `@tanstack/react-query` for cache management, retry on failure and side effects of change in data source or change in params.
+- The StatFlex component is entirely positioned `absolute` while the parent daisy ui's accordion element is positioned `relative`. This positioning was a must for achieving the expected UI looks, and to prevent accordion from overlapping the statflex, rendering any event in stat flex useless and unreachable. So, we made the StatFlex go on top of it using `absolute positioning and z-index`.
+- StatFlex is itself a parent component to a list of StatItems, which allows us to edit stat cards on the fly.
+- Seperate `custom tooltip` and `custom legend` components are mainatained, so in future, any change can be made and maintained at a single point.
+- A `separate JSON server` is setup to serve the past year's data to showcase the `http-services, custom hooks and cache management capabilities`.
+- Any standalone UI part is made as a separate component for better code maintainability and extensibility.
+- `Utility functions` are maintained, hence can be used anywhere inside the project. Also, for the `formatDate` function, we expect date format of a `union type` of `"MMM DD, YYYY" | "YYYY-MM-DD" | "DD, MMM"` which prevents users from providing wrong formats, and enables IDE's intellisense to autofill the choices while development.
+- Types and interfaces are defined wherever necessary to utilize the type safety features of TypeScript.
