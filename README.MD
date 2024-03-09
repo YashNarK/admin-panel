@@ -1,69 +1,136 @@
-<div align="center" style="margin: 30px;">
+# Project: admin-panel
 
-![Cover Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg "Cover Image")
+## How to run ?
 
-
-<br />
-<br />
-
-<div align="center">
-    <a href="https://refine.dev">Home Page</a> |
-    <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
-    <a href="https://refine.dev/docs/">Documentation</a>
-</div>
-</div>
-
-<br />
-
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
-
-<br />
-<br />
-
-[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
-[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
-
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-</div>
-
-
-## About
-
-This example provides a great starting point to learn how to build a full-fledged admin panel by integrating [**daisyUI**](https://daisyui.com) with [**refine**](https://github.com/refinedev/refine)
-
-**daisyUI** is a TailwinCSS based component templates library. It provides shorter, semantic class names composed from regular TailwindCSS classes that also come with responsive, color, size and shape variants. As such, daisyUI offers the convenience of using friendly class names to style markups while beautifying React code. On top of these, daisyUI classes can be overridden and extented. Besides, it lets us use regular TailwindCSS classes as well. In this example, you'll discover how to use daisyUI templates to style React components.
-
-refine is a React-based powerful framework for building low-code applications. It is primarily focused on implementing data-heavy apps such as internal tools, dashboards, admin panels, and storefronts. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems such and UI frameworks. It is highly customizable and extensible. In this example, you get an opportunity to learn how to integrate **daisyUI** with **refine** for building an admin panel app.
-
-Refer to the complete tutorial of this app [here.](https://refine.dev/blog/daisy-ui-react-admin-panel/)
-
-## Quick Start
-
-Run the following command to download the project:
-
-```
-npm create refine-app@latest -- --example blog-refine-daisyui
-```
-
-Once the setup is complete, navigate to the project folder and start your project with:
-
-```
+```bash
+# Clone the project to local
+git clone https://github.com/YashNarK/admin-panel.git
+# Open project folder
+cd admin-panel
+# Install dependencies
+npm i
+# Run the app in dev mode
 npm run dev
 ```
 
-Your application will be accessible at http://localhost:5173
+## How it looks in browser ?
 
-![Dashboard Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-1.png "Dashboard Page")
+![working-video](media/working_video.gif)
 
-![Product List Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-2.png "Product List Page")
+### Loading Screen
 
-![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dash-3.png "Product Edit Page")
+![loading_screen](./media/loading_screen.png)
 
-### Resources
+### Initial Screen
 
-Refer to [daisyUI docs](https://daisyui.com/docs/install/) for more information.
+![initial_screen](./media/initial_screen.png)
 
-Refer to complete CRUD app [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about refine.
+### Hovering the stats
+
+![hover_stat_highlight](./media/hover_stat.png)
+
+### Hovering the stat heading
+
+![hover_stat_heading](./media/hover_stat_heading_tooltip.png)
+
+### Dropdown selector
+
+![dropdown-selector](./media/dropdown_button.png)
+
+### Hover dropdown content
+
+![drop_down_content](./media/hover_dropdown_content.png)
+
+### Expanded chart and custom legend - accordion
+
+![expaned_accordion](./media/expanded_accordion.png)
+
+### Hovering the chart - custom tooltip
+
+![hover_chart](./media/hover_chart_tooltip.png)
+
+## Components
+
+            click component's name to open any component's tsx file
+
+1. [CustomizedLegend](src\components\CustomizedLegend\CustomizedLegend.tsx)
+   - The legend placed under the line chart takes the date range of current year's revenue data and past year's revenue data as inputs and displays the same. It has a small icon of the line type which helps user to identify which date range corresponds to which line.
+2. [CustomTooltip](src\components\CustomTooltip\CustomTooltip.tsx)
+   - The custom tooltip shows the value of both the new revenue line and old revenue line, along with its difference. It also has a small icon of the line type which helps user to identify which value corresponds to which line.
+3. [DropdownButton](src\components\DropdownButton\DropdownButton.tsx)
+   - Dropdown icon to select the comparison stat type, which can then be used for comparison. While hovering over the dropdown contents, user gets a circled question mark icon at the end of each option for more info.
+4. [Skeleton](src\components\Skeleton\Skeleton.tsx)
+   - The skeleton is just a placeholder UI which fills the chart and stat area of UI while the data is being fetched from the backend server.
+5. [StatFlex](src\components\StatFlex\StatFlex.tsx)
+   - The stat flex component is a flex box of multiple stat item, each comes with its own custom info box for displaying more information about the stat when user hovers over the stat title/heading. It also has our above mentioned dropdown component alongside stat title/heading.
+6. [dashboard/ResponsiveLineChart](src\components\dashboard\ResponsiveLineChart.tsx)
+   - Responsive Line Chart component is the core visualization component that fetches the data, memoize it and then displays in the form of rechart's line chart. It utilizes all our aforementioned components to achieve its look and functionality. It also has an collapse/accordion that displays only stat flex on collapse and then can expand into chart on click.
+
+## Interface/Types
+
+[Click to open - Interface File](src\interfaces\index.ts)
+
+1. `TLineData` - The data type required for the line data in ResponsiveLineChart component
+2. `IStatItem` - The interface required for the data to fill each stat item in StatFlex component
+3. `IOldData` - The interface requried for parsed response data for past year's revenue. This uses a custom json server to provide the necessary data.
+4. `TResponseData<T>` - The data type to parse the actual response we get for past year's revenue data.
+
+## Data
+
+A new backend server is setup that focuses on serving 2023's revenue data (randomly generated using GPT) in form of a JSON object.
+
+- API Endpoint: https://my-json-server.typicode.com/YashNarK/demo-admin-db/data
+- Source File: https://github.com/YashNarK/demo-admin-db/blob/main/db.json
+
+- Hosting service: https://my-json-server.typicode.com
+- Limitation: Only 30 data value per account in free category.
+
+- Due to the limitation of 30 data points per account, we only have data for the date range `28 Feb, 2023` to `29 Mar, 2023`.
+- One can use `_gte` and `_lte` query parameters used for filtering data based on date ranges in the provided URL.
+- By using these parameters, our dashboard automatically gets the revenue data for last year starting from `8 days before today's date last year` to `yesterday's date last year` with repsect to `IST`
+
+- Example:
+
+```bash
+curl "https://my-json-server.typicode.com/YashNarK/demo-admin-db/data?date_gte=2023-02-29&date_lte=2023-03-07"
+
+```
+
+## Helper functions
+
+[Click to open utility.ts](./src/helpers/utility.ts)
+
+1. formatDate
+   - `function formatDate({ inputDate, format }: TDateFormat): string`
+   - Takes dates in any accepted date format, in string data type and converts them to one of the three formats: `"MMM DD, YYYY" | "YYYY-MM-DD" | "DD, MMM"`
+   - This function is used extensively in the ResponsiveLineChart and its children components to format date in data, legend, tooltip etc.,
+
+## Services
+
+            click service's name to open any service's .ts file
+
+1. [api-client.ts](./src/services/api-client.ts)
+   - The axios client is initialized and base url is set.
+2. [http-service.ts](./src/services/http-service.ts)
+   - Generic http service that is data type agnostic and can work with any response type. Only GET with params is defined as our app needed only this method.
+3. [revenue-data-service.ts](./src/services/revenue-data-service.ts)
+   - The old revenue data is hosted as `{BASE_URL}/data` endpoint. Hence, we initialize the generic http-service object with the `"/data"` endpoint.
+
+## Custom hooks
+
+            click hook's name to open any hook's .ts file
+
+1. [useData](./src/hooks/useData.ts)
+   - A generic hook that queries the any data using tanstack query's useQuery hook and our generic `http-service`. It manages cache for the fetched data. The query params are set as queryKey and the same would serve as dependencies for side effects.
+2. [useOldRevenueData](./src/hooks/useOldRevenueData.ts)
+   - A old revenue data based on the `revenue-data-service` object and any params we provide. It uses generic useData hook to complete the data fetch. This hook is used in ResponsiveLineChart component to get data for old revenue line.
+
+## CSS frameworks and Icons collection used
+
+1. [Daisy UI](https://daisyui.com/)
+2. [Tailwind CSS](https://tailwindcss.com/)
+3. [React Icons](https://react-icons.github.io/react-icons/)
+
+## Charts Library used
+
+1. [Recharts](https://recharts.org/)
