@@ -24,7 +24,7 @@ const Skeleton = () => {
           <FaAngleDown />
         </button>
       </div>
-      <div className="skeleton h-60 bg-base-300 mx-auto mx-9 my-4 rounded"></div>
+      <div className="skeleton w-11/12 h-60 bg-base-300 ml-8 my-4 rounded"></div>
     </>
   );
 };
