@@ -53,22 +53,22 @@ npm run dev
 
             click component's name to open any component's tsx file
 
-1. [CustomizedLegend](.\src\components\CustomizedLegend\CustomizedLegend.tsx)
+1. [CustomizedLegend](./src/components/CustomizedLegend/CustomizedLegend.tsx)
    - The legend placed under the line chart takes the date range of current year's revenue data and past year's revenue data as inputs and displays the same. It has a small icon of the line type which helps user to identify which date range corresponds to which line.
-2. [CustomTooltip](.\src\components\CustomTooltip\CustomTooltip.tsx)
+2. [CustomTooltip](./src/components/CustomTooltip/CustomTooltip.tsx)
    - The custom tooltip shows the value of both the new revenue line and old revenue line, along with its difference. It also has a small icon of the line type which helps user to identify which value corresponds to which line.
-3. [DropdownButton](.\src\components\DropdownButton\DropdownButton.tsx)
+3. [DropdownButton](./src/components/DropdownButton/DropdownButton.tsx)
    - Dropdown icon to select the comparison stat type, which can then be used for comparison. While hovering over the dropdown contents, user gets a circled question mark icon at the end of each option for more info.
-4. [Skeleton](.\src\components\Skeleton\Skeleton.tsx)
+4. [Skeleton](./src/components/Skeleton/Skeleton.tsx)
    - The skeleton is just a placeholder UI which fills the chart and stat area of UI while the data is being fetched from the backend server.
-5. [StatFlex](.\src\components\StatFlex\StatFlex.tsx)
+5. [StatFlex](./src/components/StatFlex/StatFlex.tsx)
    - The stat flex component is a flex box of multiple stat item, each comes with its own custom info box for displaying more information about the stat when user hovers over the stat title/heading. It also has our above mentioned dropdown component alongside stat title/heading.
-6. [dashboard/ResponsiveLineChart](.\src\components\dashboard\ResponsiveLineChart.tsx)
+6. [dashboard/ResponsiveLineChart](./src/components/dashboard/ResponsiveLineChart.tsx)
    - Responsive Line Chart component is the core visualization component that fetches the data, memoize it and then displays in the form of rechart's line chart. It utilizes all our aforementioned components to achieve its look and functionality. It also has an collapse/accordion that displays only stat flex on collapse and then can expand into chart on click.
 
 ## Interface/Types
 
-[Click to open - Interface File](.\src\interfaces\index.ts)
+[Click to open - Interface File](./src/interfaces/index.ts)
 
 1. `TLineData` - The data type required for the line data in ResponsiveLineChart component
 2. `IStatItem` - The interface required for the data to fill each stat item in StatFlex component
